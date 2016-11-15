@@ -14,7 +14,7 @@ import AutoComplete from 'material-ui/AutoComplete';
 
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 
 import {Tabs, Tab} from 'material-ui/Tabs';
@@ -84,63 +84,180 @@ class Main extends Component {
     };
   }
 
+  getEquipoCardProps(){
+    return {
+      title : "Equipo",
+      subtitle:"Serie",
+      children: <CardText expandable={true}>
+        <div>
+          <AutoComplete
+              hintText="Numero de Serie"
+              dataSource={this.state.series}
+          />
+          <FloatingActionButton mini={true} secondary={true} >
+            <ContentAdd />
+          </FloatingActionButton>
+        </div>
+        <div>
+          <TextField
+              hintText="ID2"
+              floatingLabelText="ID2"
+              multiLine={true}
+          />
+        </div>
+        <div>
+          <TextField
+              hintText="ID3"
+              floatingLabelText="ID3"
+              multiLine={true}
+              rows={1}
+          />
+        </div>
+        <div>
+          <TextField
+              hintText="Address"
+              floatingLabelText="Address"
+              multiLine={true}
+          />
+        </div>
+        <div>
+          <TextField
+              hintText="Address2"
+              floatingLabelText="Address2"
+              multiLine={true}
+          />
+        </div>
+      </CardText>
+    }
+  }
+
+  getPosicionCardProps(){
+    return {
+      title:"Posicion",
+      subtitle:"ID",
+      children: <CardText expandable={true}>
+        <div>
+          <AutoComplete
+              hintText="Numero de Serie"
+              dataSource={this.state.series}
+          />
+          <FloatingActionButton mini={true} secondary={true} >
+            <ContentAdd />
+          </FloatingActionButton>
+        </div>
+        <div>
+          <TextField
+              hintText="ID2"
+              floatingLabelText="ID2"
+              multiLine={true}
+          />
+        </div>
+        <div>
+          <TextField
+              hintText="ID3"
+              floatingLabelText="ID3"
+              multiLine={true}
+              rows={1}
+          />
+        </div>
+        <div>
+          <TextField
+              hintText="Address"
+              floatingLabelText="Address"
+              multiLine={true}
+          />
+        </div>
+        <div>
+          <TextField
+              hintText="Address2"
+              floatingLabelText="Address2"
+              multiLine={true}
+          />
+        </div>
+      </CardText>
+    }
+  }
+
+  getUbicacionCardProps(){
+    return{
+      title:"Ubicacion",
+      subtitle:"Por Ubicacion",
+      children: <CardText expandable={true}>
+        <div>
+          <AutoComplete
+              hintText="Numero de Serie"
+              dataSource={this.state.series}
+          />
+          <FloatingActionButton mini={true} secondary={true} >
+            <ContentAdd />
+          </FloatingActionButton>
+        </div>
+        <div>
+          <TextField
+              hintText="ID2"
+              floatingLabelText="ID2"
+              multiLine={true}
+          />
+        </div>
+        <div>
+          <TextField
+              hintText="ID3"
+              floatingLabelText="ID3"
+              multiLine={true}
+              rows={1}
+          />
+        </div>
+        <div>
+          <TextField
+              hintText="Address"
+              floatingLabelText="Address"
+              multiLine={true}
+          />
+        </div>
+        <div>
+          <TextField
+              hintText="Address2"
+              floatingLabelText="Address2"
+              multiLine={true}
+          />
+        </div>
+      </CardText>
+    }
+  }
+
+  getCards(){
+    return [
+        this.getEquipoCardProps(),
+        this.getPosicionCardProps(),
+        this.getUbicacionCardProps()
+    ]
+  }
+
   render() {
     return (
         <MuiThemeProvider>
-          <Tabs>
-            <Tab label="Equipo" style={styles.margenbottom}>
-              <div>
-                <AutoComplete
-                    hintText="Numero de Serie"
-                    dataSource={this.state.series}
-                />
-                <FloatingActionButton mini={true} secondary={true} >
-                  <ContentAdd />
-                </FloatingActionButton>
-              </div>
-              <div>
-                <TextField
-                    hintText="ID2"
-                    floatingLabelText="ID2"
-                    multiLine={true}
-                />
-              </div>
-              <div>
-                <TextField
-                    hintText="ID3"
-                    floatingLabelText="ID3"
-                    multiLine={true}
-                    rows={1}
-                />
-              </div>
-              <div>
-                <TextField
-                    hintText="Address"
-                    floatingLabelText="Address"
-                    multiLine={true}
-                />
-              </div>
-              <div>
-                <TextField
-                    hintText="Address2"
-                    floatingLabelText="Address2"
-                    multiLine={true}
-                />
-              </div>
-            </Tab>
-            <Tab label="Item Two" >
-              <div>
-              </div>
-            </Tab>
-            <Tab
-                label="onActive"
-                data-route="/home"
-            >
-              <div>
+          <div>
+          {
+              this.getCards().map((elem,index) => {
+                return (
 
-              </div>
-            </Tab>
-          </Tabs>
+                    <Card key={index}>
+                      <CardHeader
+                          title={elem.title}
+                          subtitle={elem.subtitle}
+                          actAsExpander={true}
+                          showExpandableButton={true}
+                      />
+                      {
+                          elem.children
+                      }
+
+                    </Card>
+
+                )
+              })
+          }
+          </div>
         </MuiThemeProvider>
     );
   }
