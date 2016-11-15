@@ -16,6 +16,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
+import AppBar from 'material-ui/AppBar';
 
 import {Tabs, Tab} from 'material-ui/Tabs';
 
@@ -237,6 +238,10 @@ class Main extends Component {
     return (
         <MuiThemeProvider>
           <div>
+            <AppBar
+              title="Title"
+              iconClassNameRight="muidocs-icon-navigation-expand-more"
+              />
           {
               this.getCards().map((elem,index) => {
                 return (
